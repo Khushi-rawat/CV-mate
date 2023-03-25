@@ -39,6 +39,12 @@
 </div>
 </div>
 </div>
+
+<div class="form-floating m-5">
+    <input type="file" id="inputfile"/>
+</div>
+  </div>
+
 <div class="row g-3 m-5">
     <div class="col-md">
 </div><div class="col-md m-5">
