@@ -9,14 +9,14 @@
 
     </head>
 
-    <body>
+    <body class="m-5">
 
-    <table class="table">
+    <table class="table table-bordered">
   <thead class="thead-dark">
     <tr>
       <th scope="col">Enrollment No.</th>
       <th scope="col">Name</th>
-      <th scope="col">Go To</th>
+      <th scope="col">View Profile</th>
     </tr>
   </thead>
 
@@ -24,12 +24,12 @@
     <tr>
       <td>200170116014</td>
       <td>Foram</td>
-      <td><a href="200170116014.cv">View Profile</a></td>
+      <td><a href="cv.php">View</a></td>
     </tr>
     <tr>      
-      <td>830546578464</td>
-      <td>Xyz</td>
-      <td><a href="830546578464.cv">View Profile</a></td>
+      <td>200170116052</td>
+      <td>Khushi</td>
+      <td><a href="cv.php">View</a></td>
     </tr>
     </tbody>
     
