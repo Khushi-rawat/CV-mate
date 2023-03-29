@@ -27,33 +27,24 @@
       <th scope="col">View Profile</th>
     </tr>
   </thead>
-
+  
   <tbody id="xyz">
+  <?php
+
+include "config.php";
+$query="SELECT * from `student`";
+$connect=mysqli_query($conn,$query);
+
+while($row = mysqli_fetch_assoc($connect))
+{
+    echo"
     <tr>
-      <td>200170116014</td>
-      <td>Foram</td>
-      <td><a href="cv.php">View</a></td>
-    </tr>
-    <tr>      
-      <td>200170116052</td>
-      <td>Khushi</td>
-      <td><a href="cv.php">View</a></td>
-    </tr>
-    <tr>
-      <td>200170116014</td>
-      <td>Foram</td>
-      <td><a href="cv.php">View</a></td>
-    </tr>
-    <tr>
-      <td>200170116035</td>
-      <td>Foram</td>
-      <td><a href="cv.php">View</a></td>
-    </tr>
-    <tr>
-      <td>200170116076</td>
-      <td>Foram</td>
-      <td><a href="cv.php">View</a></td>
-    </tr>
+      <td>".$row['enrollment']."</td>
+      <td>".$row['name']."</td>
+      <td><a href=".$row['enrollment']."_cv.php>View</a></td>
+    </tr>";
+}
+?>
     </tbody>
     
 </table>
