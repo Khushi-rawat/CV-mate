@@ -21,7 +21,7 @@
     <tr>
       <td>12345678909</td>
       <td>wertyu</td>
-      <td><a href="">View</a></td>
+      <td><a href="faculty_viewrequest.php">View</a></td>
     </tr>
     <tr>
       <td>09876543212</td>
