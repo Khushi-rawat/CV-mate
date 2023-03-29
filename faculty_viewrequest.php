@@ -27,8 +27,11 @@
   <img src="" class="card-img-bottom" alt="FILE ">
 </div>
   <div class="d-grid gap-2 d-md-block m-3">
-  <button class="btn btn-success me-md-5" type="button" value="approve">Approve</button>
+  <button class="btn btn-success me-md-5" type="button" value="approve"name="approve">Approve</button>
   <button class="btn btn-danger" type="button" value="reject">Reject</button>
 </div>
+
+
+
 </body>
 </html>
