@@ -31,7 +31,11 @@
     <label for="exampleInputPassword1" class="form-label">Password</label>
     <input type="password" class="form-control" id="exampleInputPassword1" name="password">
   </div>
+  
   <button type="submit" class="btn btn-primary m-5 mt-1">Submit</button>
+  <div class="m-3">
+    <a href="register.php">register here..</a>
+  </div>
 </form>
 <?php
 session_start();
