@@ -39,9 +39,9 @@ while($row = mysqli_fetch_assoc($connect))
 {
     echo"
     <tr>
-      <td>".$row['enrollment']."</td>
-      <td>".$row['name']."</td>
-      <td><a href=".$row['enrollment']."_cv.php>View</a></td>
+    <td>".$row['enrollment']."</td>
+    <td>".$row['name']."</td>
+    <td><a href='cv.php?id={$row['enrollment']}'>View</a></td>
     </tr>";
 }
 ?>
