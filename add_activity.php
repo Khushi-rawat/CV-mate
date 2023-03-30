@@ -1,3 +1,6 @@
+<?php include 'config.php';
+session_start();
+$user_check=$_SESSION['id'];?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,14 +37,6 @@
       <label for="floatingInputGrid">Title</label>
     </div>
   </div>
-
-  <div class="col-md">
-    <div class="form-floating">
-      <input type="text" class="form-control" id="floatingInputGrid" placeholder="enroll" value="" name="enrollment">
-      <label for="floatingInputGrid">enrollment</label>
-    </div>
-  </div>
-  
 </div>
 <div class="form-floating m-5">
   <textarea class="form-control" placeholder="Description" id="floatingTextarea2" style="height: 100px" name="description"></textarea>
@@ -76,9 +71,8 @@ if(isset($_POST['submit']))
   $title=$_POST['title'];
   $description=$_POST['description'];
   $file=$_POST['file'];
-  $enrollment=$_POST['enrollment'];
 
-$query= "INSERT INTO activity (enrollment,activity, title, description, file) VALUES ('$enrollment','$activity', '$title', '$description', '$file')";
+$query= "INSERT INTO activity (enrollment,activity, title, description, file) VALUES ('$user_check','$activity', '$title', '$description', '$file')";
 $q=mysqli_query($conn,$query);
  if($q)
  {
