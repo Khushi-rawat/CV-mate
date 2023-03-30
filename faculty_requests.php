@@ -19,14 +19,14 @@
   </thead>
   <tbody>
     <?php include 'config.php'; 
-    $query="SELECT * from activity,student where status='false'";
+    $query="SELECT * from student INNER JOIN activity ON student.enrollment=activity.enrollment where activity.status='0'";
     $c=mysqli_query($conn,$query);
     while($row=mysqli_fetch_assoc($c)){
       echo"
     <tr>
       <td>".$row['enrollment']."</td>
       <td>".$row['name']."</td>
-      <td><a href='faculty_viewrequest.php?id={$row['enrollment']}'>view</a></td>
+      <td><a href='faculty_viewrequest.php?id={$row['enrollment']}&name={$row['name']}&title={$row['title']}'>view</a></td>
     </tr>";}?>
   </tbody>
 </table>
