@@ -1,4 +1,10 @@
-<?php $id=$_GET['id'];?>
+<?php $id=$_GET['id'];
+$name=$_GET['name'];
+$title=$_GET['title'];
+include "config.php";
+$q="SELECT * FROM activity WHERE  (enrollment='$id' AND title='$title')";
+$r=mysqli_query($conn,$q);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,13 +20,52 @@
   <div class="card">
     <div class="card-body">
     <h5 class="card-title"><?php echo $id;?></h5>
-    <h6 class="card-subtitle mb-2 text-body-secondary">Name</h6>
+    <h5 class="card-subtitle mb-2 text-body-secondary"><?php echo $name;?></h5>
+    </div>
   </div>
-</div>
-<br>
+  <br>
+    
     <div class="card">
     <div class="card-body">
-    <h5 class="card-title">Project/Internship/Others</h5>
+    <?php
+     while( $k=mysqli_fetch_assoc($r)){
+        echo' 
+    
+        <h5 class="card-title">'.$k["activity"].' </h5>
+        <h6 class="card-subtitle mb-2 text-body-secondary">'.$k["title"].'</h6>
+        <p class="card-text">'.$k["description"].'</p>
+      </div>
+      <p class="card-img-bottom">'.$k["file"].'</p>
+    </div>
+      <div class="d-grid gap-2 d-md-block m-3">
+      <button class="btn btn-success me-md-5" type="submit" value="approve"name="approve">Approve</button>
+      <button class="btn btn-danger" type="submit" value="reject" name="reject">Reject</button>
+    </div>';
+if(isset($_POST['approve']))
+{
+$update = "UPDATE activity SET status='1' WHERE (enrollment='$id' AND title='$title')";
+$row=mysqli_query($conn,$update);
+if($row){
+  echo "Sucessful";
+  header("location: faculty_requests.php");
+}
+else{
+  echo "error";
+}
+}
+else if(isset($_POST['reject'])){
+  $delete = "DELETE from activity WHERE (enrollment='$id' AND title='$title')";
+$rw=mysqli_query($conn,$delete);
+if($rw){
+  echo "Sucessful";
+  header("location: faculty_requests.php");
+}
+else{
+  echo "error";
+}
+}
+      }?>
+    <!-- <h5 class="card-title"> </h5>
     <h6 class="card-subtitle mb-2 text-body-secondary">Title/Name</h6>
     <p class="card-text">DESCRIBTION: Some quick example text to build on the card title and make up the bulk of the card's content.</p>
     <a href="#" class="card-link">Project Link</a>
@@ -30,15 +75,11 @@
 </div>
   <div class="d-grid gap-2 d-md-block m-3">
   <button class="btn btn-success me-md-5" type="submit" value="approve"name="approve">Approve</button>
-  <button class="btn btn-danger" type="button" value="reject">Reject</button>
+  <button class="btn btn-danger" type="button" value="reject" name="reject">Reject</button> -->
 </div></form>
 
 <?php
-include "config.php";
-if(isset($_POST['approve']))
-{
-$update = "UPDATE status SET status='true' WHERE enrollment='$id'";
-}
+
 ?>
 </body>
 </html>
