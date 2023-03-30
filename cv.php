@@ -1,3 +1,13 @@
+<?php include 'config.php';
+session_start();
+$user_check=$_SESSION['id'];
+$ses_sql=mysqli_query($conn,"SELECT * FROM student where enrollment='$user_check'");
+$row=mysqli_fetch_array($ses_sql,MYSQLI_ASSOC);
+$enrollment=$row['enrollment'];
+if(!isset($_SESSION['id'])){
+    header("location:login.php");
+    die();
+}?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,13 +34,13 @@
                 <p class="mb-0">Full Name</p>
               </div>
               <div class="col-sm-4">
-                <p class="text-muted mb-0">Johnatan Smith</p>
+                <p class="text-muted mb-0"><?php echo $row['name']; ?></p>
               </div>
               <div class="col-sm-2">
                 <p class="mb-0">Enrollment</p>
               </div>
               <div class="col-sm-4">
-                <p class="text-muted mb-0">245786434232</p>
+                <p class="text-muted mb-0"><?php echo $enrollment; ?></p>
               </div>
             </div>
             <hr>
@@ -39,13 +49,13 @@
                 <p class="mb-0">Email</p>
               </div>
               <div class="col-sm-4">
-                <p class="text-muted mb-0">example@example.com</p>
+                <p class="text-muted mb-0"><?php echo $row['email']; ?></p>
               </div>
               <div class="col-sm-2">
                 <p class="mb-0">Mobile</p>
               </div>
               <div class="col-sm-4">
-                <p class="text-muted mb-0">(098) 765-4321</p>
+                <p class="text-muted mb-0"><?php echo $row['mobile']; ?></p>
               </div>
             </div>
             <hr>
@@ -54,13 +64,13 @@
                 <p class="mb-0">Branch</p>
               </div>
               <div class="col-sm-4">
-                <p class="text-muted mb-0">Information Technology</p>
+                <p class="text-muted mb-0"><?php echo $row['branch']; ?></p>
               </div>
               <div class="col-sm-2">
                 <p class="mb-0">Gender</p>
               </div>
               <div class="col-sm-4">
-                <p class="text-muted mb-0">Male</p>
+                <p class="text-muted mb-0"><?php echo $row['gender']; ?></p>
               </div>
             </div>
             
@@ -70,13 +80,13 @@
                 <p class="mb-0">Passout Year</p>
               </div>
               <div class="col-sm-4">
-                <p class="text-muted mb-0">2024</p>
+                <p class="text-muted mb-0"><?php echo $row['passout year']; ?></p>
               </div>
               <div class="col-sm-2">
                 <p class="mb-0">Current CGPA</p>
               </div>
               <div class="col-sm-4">
-                <p class="text-muted mb-0">8.72</p>
+                <p class="text-muted mb-0"><?php echo $row['cgpa']; ?></p>
               </div>
 </div>
           </div>
@@ -90,64 +100,23 @@
       <h5 class="mb-3" style="color: white;">Your Activities</h5>
         <div class="card" style="border-radius: 15px;">
           <div class="card-body p-5">
+            
+  <ul class="list-group mb-0">
+          <?php
           
-
-            <ul class="list-group mb-0">
-            <h6>Activity 1</h6>
+$query=mysqli_query($conn,"SELECT * FROM activity where enrollment='$enrollment' ORDER BY activity");
+while($r=mysqli_fetch_assoc($query)){
+  echo'
+            <h5>'.$r["activity"].'</h5>
+            <h6>'.$r["title"].'</h6>
               <li
                 class="list-group-item d-flex justify-content-between align-items-center border-start-0 border-top-0 border-end-0 border-bottom rounded-0 mb-2">
-                <div class="d-flex align-items-center">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam ipsam obcaecati deleniti vel, atque ut ad commodi possimus, modi rem, provident ipsum excepturi molestias omnis! Eveniet non laboriosam numquam dolorem.
+                <div class="d-flex align-items-center">'
+                  .$r["description"].'
                 </div>
-                
-              </li>
-              <h6>Activity 1</h6>
-              <li
-                class="list-group-item d-flex d-flex justify-content-between align-items-center border-start-0 border-top-0 border-end-0 border-bottom rounded-0 mb-2">
-                <div class="d-flex align-items-center">
-                  
-                  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quibusdam, omnis. Ab saepe, sunt tenetur culpa architecto, animi esse temporibus accusantium numquam, veritatis laudantium explicabo unde deleniti quos quasi nulla facere!
-                </div>
-                
-              </li>
-              <h6>Activity 1</h6>
-              <li
-                class="list-group-item d-flex d-flex justify-content-between align-items-center border-start-0 border-top-0 border-end-0 border-bottom rounded-0 mb-2">
-                <div class="d-flex align-items-center">
-                  
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos obcaecati aliquid velit voluptatibus nam laudantium quis aut, iure, ducimus corporis rem explicabo ut fugiat. Quae quod dolorem quis incidunt doloremque!
-                </div>
-                
-              </li>
-              <h6>Activity 1</h6>
-              <li
-                class="list-group-item d-flex d-flex justify-content-between align-items-center border-start-0 border-top-0 border-end-0 border-bottom rounded-0 mb-2">
-                <div class="d-flex align-items-center">
-                  
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum nemo repudiandae fugiat at, quas soluta aperiam velit cupiditate perspiciatis animi excepturi praesentium tempore maiores nulla provident enim fugit veniam temporibus.
-                </div>
-                
-              </li>
-              <h6>Activity 1</h6>
-              <li
-                class="list-group-item d-flex d-flex justify-content-between align-items-center border-start-0 border-top-0 border-end-0 border-bottom rounded-0 mb-0">
-                <div class="d-flex align-items-center">
-                  
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus totam illo iste quod, dolorem exercitationem autem delectus corporis modi nesciunt ut quasi voluptas, voluptate iusto velit corrupti eos repudiandae et?
-                </div>
-                
-              </li>
-              <h6>Activity 1</h6>
-              <li
-                class="list-group-item d-flex justify-content-between align-items-center border-start-0 border-top-0 border-end-0 border-bottom rounded-0 mb-2">
-                <div class="d-flex align-items-center">
-                  
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea perspiciatis reprehenderit consequatur harum. Iure non quam reiciendis, a, quasi natus molestiae perferendis praesentium incidunt ut maxime eius provident labore nulla.
-                </div>
-               
-              </li>
+              </li>';
+}?>
             </ul>
-
           </div>
         </div>
 
