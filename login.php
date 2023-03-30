@@ -64,9 +64,9 @@ if($count>0){
     header("location: fac_profile.html");
 }}
 else{
-    echo "<script>
-    window.alert('Please try again...');
-    </script>";
+    echo '<div class="alert alert-danger" role="alert">
+  Enter same password and confirm password!
+</div>';
 }
 }
 ?>

@@ -196,7 +196,9 @@ $sql="UPDATE `student` SET `name`='$name',`branch` = '$department',`course`='$co
 $q=mysqli_query($conn,$sql);
  if($q)
  {
-  echo "Record inserted successfully.";
+  echo '<div class="alert alert-success" role="alert">
+  Record has been updated!
+</div>';
  }
 }
 // header('Location: cv.php');

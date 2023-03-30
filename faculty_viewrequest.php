@@ -1,7 +1,14 @@
-<?php $id=$_GET['id'];
+<?php include 'config.php';
+session_start();
+$user_check=$_SESSION['id'];
+$ses_sql=mysqli_query($conn,"SELECT * FROM faculty where id='$user_check'");
+if(!isset($_SESSION['id'])){
+    header("location:login.php");
+    die();
+}
+ $id=$_GET['id'];
 $name=$_GET['name'];
 $title=$_GET['title'];
-include "config.php";
 $q="SELECT * FROM activity WHERE  (enrollment='$id' AND title='$title')";
 $r=mysqli_query($conn,$q);
 ?>
@@ -46,7 +53,9 @@ if(isset($_POST['approve']))
 $update = "UPDATE activity SET status='1' WHERE (enrollment='$id' AND title='$title')";
 $row=mysqli_query($conn,$update);
 if($row){
-  echo "Sucessful";
+  echo '<div class="alert alert-success" role="alert">
+  Approved!
+</div>';
   header("location: faculty_requests.php");
 }
 else{
@@ -57,11 +66,13 @@ else if(isset($_POST['reject'])){
   $delete = "DELETE from activity WHERE (enrollment='$id' AND title='$title')";
 $rw=mysqli_query($conn,$delete);
 if($rw){
-  echo "Sucessful";
+  echo '<div class="alert alert-danger" role="alert">
+  Rejected!
+</div>';
   header("location: faculty_requests.php");
 }
 else{
-  echo "error";
+  echo 'error';
 }
 }
       }?>

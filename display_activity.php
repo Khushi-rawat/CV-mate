@@ -61,7 +61,9 @@ else{
   $delete = "DELETE from activity WHERE (enrollment='$user' AND title='$t')";
 $rw=mysqli_query($conn,$delete);
 if($rw){
-  echo "Sucessful";
+  echo '<div class="alert alert-danger" role="alert">
+  Activity Deleted!
+</div>';
   header('refresh:3;url='.$_SERVER['PHP_SELF']);
 }
 else{
