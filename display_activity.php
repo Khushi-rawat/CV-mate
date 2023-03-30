@@ -1,8 +1,6 @@
 <?php
 session_start();
-if(isset($_GET['title'])){
-  $t=$_GET['title'];
-}
+$t="";
 include 'config.php';
 $user=$_SESSION['id'];
 $ses_sql=mysqli_query($conn,"SELECT * FROM activity WHERE enrollment='$user'");
@@ -58,12 +56,15 @@ else{
       <td>'.$status.'</td>
       <td><a class="btn btn-danger" href="display_activity.php?title='.$title.'">Delete</a></td></td>
     </tr>';
+    if(isset($_GET['title'])){
+      $t=$_GET['title'];
+    } 
   $delete = "DELETE from activity WHERE (enrollment='$user' AND title='$t')";
 $rw=mysqli_query($conn,$delete);
 if($rw){
-  echo '<div class="alert alert-danger" role="alert">
-  Activity Deleted!
-</div>';
+//   echo '<div class="alert alert-danger" role="alert">
+//   Activity Deleted!
+// </div>';
   header('refresh:3;url='.$_SERVER['PHP_SELF']);
 }
 else{
