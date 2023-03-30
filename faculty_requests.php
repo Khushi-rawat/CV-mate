@@ -18,16 +18,16 @@
     </tr>
   </thead>
   <tbody>
+    <?php include 'config.php'; 
+    $query="SELECT * from activity,student where status='false'";
+    $c=mysqli_query($conn,$query);
+    while($row=mysqli_fetch_assoc($c)){
+      echo"
     <tr>
-      <td>12345678909</td>
-      <td>wertyu</td>
-      <td><a href="faculty_viewrequest.php">View</a></td>
-    </tr>
-    <tr>
-      <td>09876543212</td>
-      <td>sdbgju</td>
-      <td><a href="">View</a></td>
-    </tr>
+      <td>".$row['enrollment']."</td>
+      <td>".$row['name']."</td>
+      <td><a href='faculty_viewrequest.php?id={$row['enrollment']}'>view</a></td>
+    </tr>";}?>
   </tbody>
 </table>
 </body>

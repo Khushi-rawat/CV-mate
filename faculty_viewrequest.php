@@ -1,3 +1,4 @@
+<?php $id=$_GET['id'];?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,9 +10,10 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
 </head>
 <body class="m-5">
+  <form method="post">
   <div class="card">
     <div class="card-body">
-    <h5 class="card-title">123456789012</h5>
+    <h5 class="card-title"><?php echo $id;?></h5>
     <h6 class="card-subtitle mb-2 text-body-secondary">Name</h6>
   </div>
 </div>
@@ -27,11 +29,16 @@
   <img src="" class="card-img-bottom" alt="FILE ">
 </div>
   <div class="d-grid gap-2 d-md-block m-3">
-  <button class="btn btn-success me-md-5" type="button" value="approve"name="approve">Approve</button>
+  <button class="btn btn-success me-md-5" type="submit" value="approve"name="approve">Approve</button>
   <button class="btn btn-danger" type="button" value="reject">Reject</button>
-</div>
+</div></form>
 
-
-
+<?php
+include "config.php";
+if(isset($_POST['approve']))
+{
+$update = "UPDATE status SET status='true' WHERE enrollment='$id'";
+}
+?>
 </body>
 </html>
