@@ -44,13 +44,22 @@ $r=mysqli_query($conn,$q);
       </div>
       <p class="card-img-bottom">'.$k["file"].'</p>
     </div>
-      <div class="d-grid gap-2 d-md-block m-3">
+      <div class="d-grid gap-2 d-md-block m-3"><br>
+      <p class="card-subtitle">Assess this activity</p>
+      <select class="form-control" name="assessment" required>
+                      <option value="1">1-Poor</option>
+                      <option value="2">2-Average</option>
+                      <option value="3">3-Good</option>
+                      <option value="4">4-Very Good</option>
+                      <option value="5">5-Excellent</option>
+                    </select><br><br>
       <button class="btn btn-success me-md-5" type="submit" value="approve"name="approve">Approve</button>
       <button class="btn btn-danger" type="submit" value="reject" name="reject">Reject</button>
     </div>';
 if(isset($_POST['approve']))
 {
-$update = "UPDATE activity SET status='1' WHERE (enrollment='$id' AND title='$title')";
+  $assess=$_POST['assessment'];
+$update = "UPDATE activity SET `status`='1',`assessment`='$assess' WHERE (enrollment='$id' AND title='$title')";
 $row=mysqli_query($conn,$update);
 if($row){
   echo '<div class="alert alert-success" role="alert">

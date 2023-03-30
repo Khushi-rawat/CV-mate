@@ -31,8 +31,9 @@ if(!isset($_SESSION['id'])){
       <th scope="col">Main Activity</th>
       <th scope="col">Title</th>
       <th scope="col">Description</th>
-      <th scope="col">Attachment</th>
+      <!-- <th scope="col">Attachment</th> -->
       <th scope="col">Status</th>
+      <th scope="col">Assessment(out of 5)</th>
       <th scope="col">Delete</th>
     </tr>
   </thead>
@@ -52,8 +53,9 @@ else{
       <td>'.$row['activity'].'</td>
       <td>'.$title.'</td>
       <td>'.$row['description'].'</td>
-      <td>'.$row['file'].'</td>
+      
       <td>'.$status.'</td>
+      <td>'.$row['assessment'].'</td>
       <td><a class="btn btn-danger" href="display_activity.php?title='.$title.'">Delete</a></td></td>
     </tr>';
     if(isset($_GET['title'])){
