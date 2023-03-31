@@ -137,8 +137,8 @@ while($r=mysqli_fetch_assoc($query)){
 
       </div>
     </div>
-  <br><button class="btn btn-light btn-sm position-absolute start-50 translate-middle-x" onclick="this.style.display='none'; window.print();" id="try"><h5>Download</h5></button>
-
+  <br><button class="btn btn-light position-absolute start-50 translate-middle-x" onclick="this.style.display='none'; window.print();" id="try"><h5>Download</h5></button>
+<br>
     <!-- <a href="https://wa.me/91XXXXXXXXXX?text=urlencodedtext" target="_blank">WA</a> -->
   <!-- <button class="btn btn-light " style="float: right; margin-right: 100px;" onclick="openWhatsapp()" >Share via Gmail</button>  -->
   </div>
