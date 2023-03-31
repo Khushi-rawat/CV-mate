@@ -44,7 +44,21 @@ $user_check=$_SESSION['id'];?>
 </div>
 </div>
 </div>
-
+<div class="col-md">
+    <div class="form-floating m-5">
+      <select class="form-select" id="floatingSelectGrid" name="faculty">
+        
+      <option value=""></option>
+      <?php $que="SELECT * from `faculty`";
+      $r=mysqli_query($conn,$que);
+      while($row=mysqli_fetch_assoc($r)){
+        // echo $row["name"];
+        echo '
+        <option value="'.$row["id"].'">'.$row['name'].'</option>';}?>
+      </select>
+      <label for="floatingSelectGrid">Choose an expert/mentor</label>
+    </div>
+  </div>
 <!-- <div class="form-floating m-5">
     <input type="file" id="inputfile" name="file"/>
 </div>
@@ -71,8 +85,10 @@ if(isset($_POST['submit']))
   $title=$_POST['title'];
   $description=$_POST['description'];
   // $file=$_POST['file'];
+  $faculty=$_POST['faculty'];
 
-$query= "INSERT INTO activity (enrollment,activity, title, description, file) VALUES ('$user_check','$activity', '$title', '$description', '')";
+  $query= "INSERT INTO activity (enrollment,activity, title, description, faculty) VALUES ('$user_check','$activity', '$title', '$description', '$faculty')";
+//$query= "INSERT INTO activity (enrollment,activity, title, description, file) VALUES ('$user_check','$activity', '$title', '$description', '')";
 $q=mysqli_query($conn,$query);
  if($q)
  {

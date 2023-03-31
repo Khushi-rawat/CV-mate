@@ -27,7 +27,8 @@ if(!isset($_SESSION['id'])){
   </thead>
   <tbody>
     <?php include 'config.php'; 
-    $query="SELECT * from student INNER JOIN activity ON student.enrollment=activity.enrollment where activity.status='0'";
+    $query="SELECT * from student INNER JOIN activity ON student.enrollment=activity.enrollment where (activity.status='0' AND activity.faculty='$user_check')";
+    //$query="SELECT * from student INNER JOIN activity ON student.enrollment=activity.enrollment where activity.status='0'";
     $c=mysqli_query($conn,$query);
     while($row=mysqli_fetch_assoc($c)){
       echo"
