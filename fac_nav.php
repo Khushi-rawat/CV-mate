@@ -1,3 +1,8 @@
+<?php session_start();
+if(!isset($_SESSION['id'])){
+  header("location:login.php");
+  die();
+}?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -30,7 +35,7 @@
                         <a class="nav-link" target="f_main" aria-current="page" href="faculty_requests.php">Requests</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" target="_parent" href="login.php">Log Out</a>
+                        <a class="nav-link" target="_parent" href="logout.php">Log Out</a>
                     </li>
 
                 </ul>
