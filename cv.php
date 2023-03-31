@@ -80,7 +80,7 @@ if(!isset($_SESSION['id'])){
                 <p class="mb-0">Passout Year</p>
               </div>
               <div class="col-sm-4">
-                <p class="text-muted mb-0"><?php echo $row['passout year']; ?></p>
+                <p class="text-muted mb-0"><?php echo $row['passoutyear']; ?></p>
               </div>
               <div class="col-sm-2">
                 <p class="mb-0">Current CGPA</p>
@@ -122,8 +122,20 @@ while($r=mysqli_fetch_assoc($query)){
 
       </div>
     </div>
+  <br>
+    <!-- <a href="https://wa.me/91XXXXXXXXXX?text=urlencodedtext" target="_blank">WA</a> -->
+  <button class="btn btn-light " style="float: right; margin-right: 100px;" onclick="openWhatsapp()" >Share via Gmail</button> 
   </div>
 </section>
 
+ <script type="text/javascript">
+function openWhatsapp() {
+  let url = 'https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=&su=Your+Subject+here&body='+ "http://localhost/CV%20mate/CV-mate/student_profile.html" +'&ui=2&tf=1&pli=1';
+
+window.open(url, 'sharer', 'toolbar=0,status=0,width=648,height=395');
+  
+}
+
+</script>
 </body>
 </html>
