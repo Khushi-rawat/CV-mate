@@ -1,3 +1,8 @@
+<?php session_start();
+if(!isset($_SESSION['id'])){
+  header("location:login.php");
+  die();
+}?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,12 +10,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Faculty_profile</title>
+    <title>Document</title>
 </head>
 
 <frameset rows="9%,91%">
-    <frame src="fac_nav.html" name="f_menu">
-        <frame src="student_li.php" name="f_main">
+    <frame src="nav.php" name="menu">
+        <frame src="cv.php" name="main">
 </frameset>
 <noframes>
 

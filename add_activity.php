@@ -45,10 +45,10 @@ $user_check=$_SESSION['id'];?>
 </div>
 </div>
 
-<div class="form-floating m-5">
+<!-- <div class="form-floating m-5">
     <input type="file" id="inputfile" name="file"/>
 </div>
-  </div>
+  </div> -->
 
 <div class="row g-3 m-5">
     <div class="col-md">
@@ -70,9 +70,9 @@ if(isset($_POST['submit']))
   $activity=$_POST['activity'];
   $title=$_POST['title'];
   $description=$_POST['description'];
-  $file=$_POST['file'];
+  // $file=$_POST['file'];
 
-$query= "INSERT INTO activity (enrollment,activity, title, description, file) VALUES ('$user_check','$activity', '$title', '$description', '$file')";
+$query= "INSERT INTO activity (enrollment,activity, title, description, file) VALUES ('$user_check','$activity', '$title', '$description', '')";
 $q=mysqli_query($conn,$query);
  if($q)
  {

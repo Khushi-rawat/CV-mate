@@ -37,7 +37,7 @@ if(!isset($_SESSION['id'])){
       <th scope="col">Delete</th>
     </tr>
   </thead>
-<form method="post">
+<!-- <form method="post"> -->
   <tbody id="xyz">
     <?php
     while($row=mysqli_fetch_assoc($ses_sql)){
@@ -56,24 +56,34 @@ else{
       
       <td>'.$status.'</td>
       <td>'.$row['assessment'].'</td>
-      <td><a class="btn btn-danger" href="display_activity.php?title='.$title.'">Delete</a></td></td>
-    </tr>';
-    if(isset($_GET['title'])){
-      $t=$_GET['title'];
-    } 
-  $delete = "DELETE from activity WHERE (enrollment='$user' AND title='$t')";
-$rw=mysqli_query($conn,$delete);
-if($rw){
-//   echo '<div class="alert alert-danger" role="alert">
-//   Activity Deleted!
-// </div>';
-  header('refresh:3;url='.$_SERVER['PHP_SELF']);
-}
-else{
-  echo "error";
-}}
+      <td><form method="post" action="dummy.php">
+      <input type="hidden" value="'. $title .'" name="title"> 
+      <button type="submit" name="delete" class="btn btn-danger">Delete</button></td></td>
+      </form>
+    </tr>';}
+    // if(isset($_GET['title'])){
+      //  <a class="btn btn-danger" href="display_activity.php?title='.$title.'">Delete</a></td></td>
+    //   $t=$_GET['title'];
+    // } 
+//     if( $_SERVER['REQUEST_METHOD']=='POST'){
+//       $t=$_POST['title'];
+//       echo $t;
+//     }
+//   $delete = "DELETE from activity WHERE (enrollment='$user' AND title='$t')";
+// $rw=mysqli_query($conn,$delete);
+// if($rw){
+// //   echo '<div class="alert alert-danger" role="alert">
+// //   Activity Deleted!
+// // </div>';
+//   // header('refresh:3;url='.$_SERVER['PHP_SELF']);
+//   echo "<script>window.location.href = './display_activity.php'</script>";
+// }
+// else{
+//   echo "error";
+// }}
   
     ?>
     </tbody>
-</form>
 </table>
+</body>
+</html>

@@ -54,7 +54,7 @@ if($count>0){
     // $_SESSION("enrollment");
     $_SESSION['id']=$id;
     $_SESSION['user']='student';
-        header("location: student_profile.html");
+        header("location: student_profile.php");
 }}
 else if($_POST['user']=='faculty'){ 
   $query = "SELECT * FROM faculty WHERE id='$id' and password='$password'";
@@ -63,7 +63,7 @@ $count=mysqli_num_rows($sql);
 if($count>0){
     $_SESSION['id']=$id;
     $_SESSION['user']='faculty';
-    header("location: fac_profile.html");
+    header("location: fac_profile.php");
 }}
 else{
     echo '<div class="alert alert-danger" role="alert">
