@@ -8,9 +8,16 @@ if(!isset($_SESSION['id'])){
 include "config.php";
 $test=array();
 $count=0;
-$res=mysqli_query($conn,"SELECT title,assessment from activity WHERE (`enrollment`='$user' AND `status`='1')");
+// $res=mysqli_query($conn,"SELECT title,assessment from activity WHERE (`enrollment`='$user' AND `status`='1')");
+// while($row=mysqli_fetch_array($res)){
+//     $test[$count]["label"]=$row["title"];
+//     $test[$count]["y"]=$row["assessment"];
+//     $count=$count+1;
+// }
+
+$res=mysqli_query($conn,"SELECT activity,SUM(assessment) as assessment from activity WHERE (`enrollment`='$user' AND `status`='1') GROUP BY activity");
 while($row=mysqli_fetch_array($res)){
-    $test[$count]["label"]=$row["title"];
+    $test[$count]["label"]=$row["activity"];
     $test[$count]["y"]=$row["assessment"];
     $count=$count+1;
 }
