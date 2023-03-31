@@ -21,7 +21,7 @@ if(!isset($_SESSION['id'])){
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
     <title>CV</title>
 
     <style>
@@ -119,7 +119,7 @@ if(!isset($_SESSION['id'])){
   <ul class="list-group mb-0">
           <?php
           
-$query=mysqli_query($conn,"SELECT * FROM activity where enrollment='$enrollment' ORDER BY activity");
+$query=mysqli_query($conn,"SELECT * FROM activity where (`enrollment`='$enrollment' AND `status`='1') ORDER BY activity");
 while($r=mysqli_fetch_assoc($query)){
   echo'
             <h5>'.$r["activity"].'</h5>
@@ -137,7 +137,7 @@ while($r=mysqli_fetch_assoc($query)){
 
       </div>
     </div>
-  <br><button class="btn btn-light position-absolute start-50 translate-middle-x" onclick="this.style.display='none'; window.print();" id="try"><h1>Download</h1></button>
+  <br><button class="btn btn-light btn-sm position-absolute start-50 translate-middle-x" onclick="this.style.display='none'; window.print();" id="try"><h1>Download</h1></button>
 
     <!-- <a href="https://wa.me/91XXXXXXXXXX?text=urlencodedtext" target="_blank">WA</a> -->
   <button class="btn btn-light " style="float: right; margin-right: 100px;" onclick="openWhatsapp()" >Share via Gmail</button> 
