@@ -76,7 +76,9 @@ $query= "INSERT INTO activity (enrollment,activity, title, description, file) VA
 $q=mysqli_query($conn,$query);
  if($q)
  {
-  echo "Record inserted successfully.";
+  echo '<div class="alert alert-success" role="alert">
+  Your Record has been successfully inserted!
+</div>';
  }
 }
 ?>
