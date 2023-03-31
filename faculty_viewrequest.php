@@ -1,7 +1,14 @@
-<?php $id=$_GET['id'];
+<?php include 'config.php';
+session_start();
+$user_check=$_SESSION['id'];
+$ses_sql=mysqli_query($conn,"SELECT * FROM faculty where id='$user_check'");
+if(!isset($_SESSION['id'])){
+    header("location:login.php");
+    die();
+}
+ $id=$_GET['id'];
 $name=$_GET['name'];
 $title=$_GET['title'];
-include "config.php";
 $q="SELECT * FROM activity WHERE  (enrollment='$id' AND title='$title')";
 $r=mysqli_query($conn,$q);
 ?>
@@ -37,16 +44,27 @@ $r=mysqli_query($conn,$q);
       </div>
       <p class="card-img-bottom">'.$k["file"].'</p>
     </div>
-      <div class="d-grid gap-2 d-md-block m-3">
+      <div class="d-grid gap-2 d-md-block m-3"><br>
+      <p class="card-subtitle">Assess this activity</p>
+      <select class="form-control" name="assessment" required>
+                      <option value="1">1-Poor</option>
+                      <option value="2">2-Average</option>
+                      <option value="3">3-Good</option>
+                      <option value="4">4-Very Good</option>
+                      <option value="5">5-Excellent</option>
+                    </select><br><br>
       <button class="btn btn-success me-md-5" type="submit" value="approve"name="approve">Approve</button>
       <button class="btn btn-danger" type="submit" value="reject" name="reject">Reject</button>
     </div>';
 if(isset($_POST['approve']))
 {
-$update = "UPDATE activity SET status='1' WHERE (enrollment='$id' AND title='$title')";
+  $assess=$_POST['assessment'];
+$update = "UPDATE activity SET `status`='1',`assessment`='$assess' WHERE (enrollment='$id' AND title='$title')";
 $row=mysqli_query($conn,$update);
 if($row){
-  echo "Sucessful";
+  echo '<div class="alert alert-success" role="alert">
+  Approved!
+</div>';
   header("location: faculty_requests.php");
 }
 else{
@@ -57,11 +75,13 @@ else if(isset($_POST['reject'])){
   $delete = "DELETE from activity WHERE (enrollment='$id' AND title='$title')";
 $rw=mysqli_query($conn,$delete);
 if($rw){
-  echo "Sucessful";
+  echo '<div class="alert alert-danger" role="alert">
+  Rejected!
+</div>';
   header("location: faculty_requests.php");
 }
 else{
-  echo "error";
+  echo 'error';
 }
 }
       }?>

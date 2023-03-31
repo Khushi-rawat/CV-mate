@@ -92,7 +92,7 @@ if(!isset($_SESSION['id'])){
                       <option value="2024"<?php if($option == "2024") echo 'selected = "selected"'; ?>>2024</option>
                       <option value="2025"<?php if($option == "2025") echo 'selected = "selected"'; ?>>2025</option>
                       <option value="2026"<?php if($option == "2026") echo 'selected = "selected"'; ?>>2026</option>
-                      <option value="2027"<?php if($option == "I2027") echo 'selected = "selected"'; ?>>2027</option>
+                      <option value="2027"<?php if($option == "2027") echo 'selected = "selected"'; ?>>2027</option>
                     </select>
                   </div>
                 </div>
@@ -196,7 +196,9 @@ $sql="UPDATE `student` SET `name`='$name',`branch` = '$department',`course`='$co
 $q=mysqli_query($conn,$sql);
  if($q)
  {
-  echo "Record inserted successfully.";
+  echo '<div class="alert alert-success" role="alert">
+  Record has been updated!
+</div>';
  }
 }
 // header('Location: cv.php');

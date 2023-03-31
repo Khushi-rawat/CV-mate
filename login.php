@@ -53,7 +53,8 @@ $count=mysqli_num_rows($sql);
 if($count>0){
     // $_SESSION("enrollment");
     $_SESSION['id']=$id;
-    header("location: student_profile.html");
+    $_SESSION['user']='student';
+        header("location: student_profile.html");
 }}
 else if($_POST['user']=='faculty'){ 
   $query = "SELECT * FROM faculty WHERE id='$id' and password='$password'";
@@ -61,12 +62,13 @@ $sql=mysqli_query($conn,$query);
 $count=mysqli_num_rows($sql);
 if($count>0){
     $_SESSION['id']=$id;
+    $_SESSION['user']='faculty';
     header("location: fac_profile.html");
 }}
 else{
-    echo "<script>
-    window.alert('Please try again...');
-    </script>";
+    echo '<div class="alert alert-danger" role="alert">
+  Enter same password and confirm password!
+</div>';
 }
 }
 ?>

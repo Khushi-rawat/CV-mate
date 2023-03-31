@@ -1,9 +1,15 @@
 <?php include 'config.php';
 session_start();
-$user_check=$_SESSION['id'];
+if($_SESSION['user']=='student'){
+  $user_check=$_SESSION['id'];
+  $ses_sql=mysqli_query($conn,"SELECT * FROM student where enrollment='$user_check'");
+  $row=mysqli_fetch_array($ses_sql,MYSQLI_ASSOC);
+  $enrollment=$row['enrollment'];}
+  else if($_SESSION['user']=='faculty'){
+$user_check=$_GET['id'];
 $ses_sql=mysqli_query($conn,"SELECT * FROM student where enrollment='$user_check'");
 $row=mysqli_fetch_array($ses_sql,MYSQLI_ASSOC);
-$enrollment=$row['enrollment'];
+$enrollment=$row['enrollment'];}
 if(!isset($_SESSION['id'])){
     header("location:login.php");
     die();
@@ -40,7 +46,7 @@ if(!isset($_SESSION['id'])){
                 <p class="mb-0">Enrollment</p>
               </div>
               <div class="col-sm-4">
-                <p class="text-muted mb-0"><?php echo $enrollment; ?></p>
+                <p class="text-muted mb-0"><?php echo $row['enrollment']; ?></p>
               </div>
             </div>
             <hr>

@@ -1,3 +1,11 @@
+<?php include 'config.php';
+session_start();
+$user_check=$_SESSION['id'];
+$ses_sql=mysqli_query($conn,"SELECT * FROM faculty where id='$user_check'");
+if(!isset($_SESSION['id'])){
+    header("location:login.php");
+    die();
+}?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
