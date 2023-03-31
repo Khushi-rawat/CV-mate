@@ -1,4 +1,5 @@
-<?php include 'config.php';
+<?php 
+include 'config.php';
 session_start();
 $user_check=$_SESSION['id'];
 $ses_sql=mysqli_query($conn,"SELECT * FROM faculty where id='$user_check'");
@@ -26,17 +27,22 @@ if(!isset($_SESSION['id'])){
     </tr>
   </thead>
   <tbody>
-    <?php include 'config.php'; 
-    $query="SELECT * from student INNER JOIN activity ON student.enrollment=activity.enrollment where (activity.status='0' AND activity.faculty='$user_check')";
+    <?php 
+    
+    $query="SELECT * from student INNER JOIN activity ON student.enrollment=activity.enrollment where (activity.status='0' AND (activity.faculty='$user_check' OR activity.faculty='0'))";
     //$query="SELECT * from student INNER JOIN activity ON student.enrollment=activity.enrollment where activity.status='0'";
     $c=mysqli_query($conn,$query);
     while($row=mysqli_fetch_assoc($c)){
+      if($row['improve']==0){
       echo"
     <tr>
       <td>".$row['enrollment']."</td>
       <td>".$row['name']."</td>
       <td><a href='faculty_viewrequest.php?id={$row['enrollment']}&name={$row['name']}&title={$row['title']}'>view</a></td>
-    </tr>";}?>
+    </tr>";
+    }
+  }
+    ?>
   </tbody>
 </table>
 </body>

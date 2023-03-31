@@ -25,15 +25,16 @@ if(!isset($_SESSION['id'])){
 
     <body class="m-5">
     
-    <table class="table table-bordered" id="myTable">
+    <table class="table table-bordered" id="myTable"r>
   <thead class="thead-dark">
     <tr>
-      <th scope="col">Main Activity</th>
-      <th scope="col">Title</th>
-      <th scope="col">Description</th>
+      <th scope="col" >Main Activity</th>
+      <th scope="col" >Title</th>
+      <th scope="col" >Description</th>
       <!-- <th scope="col">Attachment</th> -->
       <th scope="col">Status</th>
-      <th scope="col">Assessment(out of 5)</th>
+      <th scope="col">Feedback</th>
+      <th scope="col">Assessment (Out Of 5)</th>
       <th scope="col">Delete</th>
     </tr>
   </thead>
@@ -53,8 +54,9 @@ else{
       <td>'.$row['activity'].'</td>
       <td>'.$title.'</td>
       <td>'.$row['description'].'</td>
-      
+          
       <td>'.$status.'</td>
+      <td>'.$row['feedback'].'</td> 
       <td>'.$row['assessment'].'</td>
       <td><form method="post" action="dummy.php">
       <input type="hidden" value="'. $title .'" name="title"> 
