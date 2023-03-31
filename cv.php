@@ -128,15 +128,15 @@ while($r=mysqli_fetch_assoc($query)){
 
       </div>
     </div>
-  <br>
+  <br><button class="btn btn-light " onclick="this.style.display='none'; window.print(); "><h1>Download</h1></button>
+
     <!-- <a href="https://wa.me/91XXXXXXXXXX?text=urlencodedtext" target="_blank">WA</a> -->
   <button class="btn btn-light " style="float: right; margin-right: 100px;" onclick="openWhatsapp()" >Share via Gmail</button> 
   </div>
 </section>
-
  <script type="text/javascript">
 function openWhatsapp() {
-  let url = 'https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=&su=Your+Subject+here&body='+ "http://localhost/CV%20mate/CV-mate/student_profile.html" +'&ui=2&tf=1&pli=1';
+  let url = 'https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=&su=Your+Subject+here&body='+ "http://localhost/CV-mate/student_profile.html" +'&ui=2&tf=1&pli=1';
 
 window.open(url, 'sharer', 'toolbar=0,status=0,width=648,height=395');
   
