@@ -1,6 +1,5 @@
 <?php include 'config.php';
-session_start();
-$user_check=$_SESSION['id'];?>
+session_start();;?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,12 +11,11 @@ $user_check=$_SESSION['id'];?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 </head>
 <body>
-  <form action="" method="post">
-    
+  <form action="" method="post" enctype="multipart/form-data">
 <div class="row g-2 m-5">
     <div class="col-md">
     <div class="form-floating">
-      <select class="form-select" id="floatingSelectGrid" name="activity">
+      <select class="form-select" id="floatingSelectGrid" name="activity" required>
         
       <option value=""></option>
         <option value="Course">Course</option>
@@ -29,28 +27,32 @@ $user_check=$_SESSION['id'];?>
         <option value="Skills">Skills</option>
         <option value="Others">Others</option>
       </select>
-      <label for="floatingSelectGrid">Works with selects</label>
+      <label for="floatingSelectGrid">Activity</label>
     </div>
   </div>
   <div class="col-md">
     <div class="form-floating">
-      <input type="text" class="form-control" id="floatingInputGrid" placeholder="Name" value="" name="title">
+      <input type="text" class="form-control" id="floatingInputGrid" placeholder="Name" value="" name="title" required>
       <label for="floatingInputGrid">Title</label>
     </div>
   </div>
 </div>
 <div class="form-floating m-5">
-  <textarea class="form-control" placeholder="Description" id="floatingTextarea2" style="height: 100px" name="description"></textarea>
+  <textarea class="form-control" placeholder="Description" id="floatingTextarea2" style="height: 100px" name="description" required></textarea>
   <label for="floatingTextarea2">Description</label>
 </div>
 </div>
 </div>
+<div class="form-floating m-5">
+    <input type="file" id="inputfile" name="file">
+</div>
+  
 <div class="col-md">
     <div class="form-floating m-5">
       <select class="form-select" id="floatingSelectGrid" name="faculty">
-        
-      <option value=""></option>
-      <?php $que="SELECT * from `faculty`";
+      <?php 
+      
+      $que="SELECT * from `faculty`";
       $r=mysqli_query($conn,$que);
       while($row=mysqli_fetch_assoc($r)){
         // echo $row["name"];
@@ -60,10 +62,7 @@ $user_check=$_SESSION['id'];?>
       <label for="floatingSelectGrid">Choose an expert/mentor</label>
     </div>
   </div>
-<!-- <div class="form-floating m-5">
-    <input type="file" id="inputfile" name="file"/>
-</div>
-  </div> -->
+
 
 <div class="row g-3 m-5">
     <div class="col-md">
@@ -80,23 +79,30 @@ $user_check=$_SESSION['id'];?>
 <?php
 include "config.php";
 
+$user_check=$_SESSION['id'];
 if(isset($_POST['submit']))
 {
+  
+
   $activity=$_POST['activity'];
   $title=$_POST['title'];
   $description=$_POST['description'];
-  // $file=$_POST['file'];
+  $file=$_FILES['file']['name'];
+  $tempname=$_FILES['file']['tmp_name'];
+  $folder="image/".$file;
+  //  $file=$_POST['file'];
   $faculty=$_POST['faculty'];
 
-  $query= "INSERT INTO activity (enrollment,activity, title, description, faculty) VALUES ('$user_check','$activity', '$title', '$description', '$faculty')";
+  $query= "INSERT INTO `activity` (enrollment,activity, title, description, file, faculty) VALUES ('$user_check','$activity', '$title', '$description','$file','$faculty')";
 //$query= "INSERT INTO activity (enrollment,activity, title, description, file) VALUES ('$user_check','$activity', '$title', '$description', '')";
 $q=mysqli_query($conn,$query);
- if($q)
+ if($q && move_uploaded_file($tempname,$folder))
  {
   echo '<div class="alert alert-success" role="alert">
   Your Record has been successfully inserted!
 </div>';
  }
+ else "error";
 }
 ?>
 </body>
