@@ -51,20 +51,21 @@ if(!isset($_SESSION['id'])){
               <div class="col-sm-4">
                 <p class="text-muted mb-0"><?php echo $row['name']; ?></p>
               </div>
-              <div class="col-sm-2">
-                <p class="mb-0">Enrollment</p>
-              </div>
-              <div class="col-sm-4">
-                <p class="text-muted mb-0"><?php echo $row['enrollment']; ?></p>
-              </div>
-            </div>
-            <hr>
-            <div class="row">
+              
               <div class="col-sm-2">
                 <p class="mb-0">Email</p>
               </div>
               <div class="col-sm-4">
                 <p class="text-muted mb-0"><?php echo $row['email']; ?></p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-2">
+                <p class="mb-0">Degree</p>
+              </div>
+              <div class="col-sm-4">
+                <p class="text-muted mb-0"><?php echo $row['course']; ?></p>
               </div>
               <div class="col-sm-2">
                 <p class="mb-0">Mobile</p>

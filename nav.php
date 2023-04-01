@@ -57,7 +57,7 @@ if(!isset($_SESSION['id'])){
                         <a class="nav-link" target="main" href="display_activity.php">Display Activity</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" target="main" href="progress.php">Progress Graph</a>
+                        <a class="nav-link" target="main" href="assessment.php">Your Assessment</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" target="main" href="edit_profile.php">Edit Profile</a>

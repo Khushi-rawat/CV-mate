@@ -32,14 +32,14 @@ var chart = new CanvasJS.Chart("chartContainer", {
 	animationEnabled: true,
 	theme: "light2",
 	title:{
-		text: "YOUR PROGRESS"
+		text: "YOUR ASSESSMENT"
 	},
 	axisY: {
 		title: "Assessment"
 	},
 	data: [{
 		type: "column",
-		yValueFormatString: "#,##0.## tonnes",
+		yValueFormatString: "#,##0.##",
 		dataPoints: <?php echo json_encode($test, JSON_NUMERIC_CHECK); ?>
 	}]
 });

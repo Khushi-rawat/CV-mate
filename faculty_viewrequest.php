@@ -23,7 +23,7 @@ $r=mysqli_query($conn,$q);
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
 </head>
 <body class="m-5">
-  <form method="post">
+  <form method="post" enctype="multipart/form-data">
   <div class="card">
     <div class="card-body">
     <h5 class="card-title"><?php echo $id;?></h5>
@@ -41,8 +41,8 @@ $r=mysqli_query($conn,$q);
         <h5 class="card-title">'.$k["activity"].' </h5>
         <h6 class="card-subtitle mb-2 text-body-secondary">'.$k["title"].'</h6>
         <p class="card-text">'.$k["description"].'</p>
+        <img src="image/'.$k["file"].'" style="height:400px; weight:400px;">
       </div>
-      <p class="card-img-bottom">'.$k["file"].'</p>
     </div>
       <div class="d-grid gap-2 d-md-block m-3"><br>
       <p class="card-subtitle">Assess this activity</p>
@@ -52,15 +52,18 @@ $r=mysqli_query($conn,$q);
                       <option value="3">3-Good</option>
                       <option value="4">4-Very Good</option>
                       <option value="5">5-Excellent</option>
-                    </select><br><br>
-      <button class="btn btn-success me-md-5" type="submit" value="approve"name="approve">Approve</button>
-      <button class="btn btn-danger" type="submit" value="reject" name="reject">Reject</button>
-    </div>';
-if(isset($_POST['approve']))
-{
-  $assess=$_POST['assessment'];
-$update = "UPDATE activity SET `status`='1',`assessment`='$assess' WHERE (enrollment='$id' AND title='$title')";
-$row=mysqli_query($conn,$update);
+                    </select>
+                    <input type="text" class="form-control mt-5" name="feedback" placeholder="Add comments if any">
+                    <button class="btn btn-success me-md-5 mt-5" type="submit" value="approve"name="approve">Approve</button>
+                    <button class="btn btn-danger me-md-5 mt-5" type="submit" value="reject" name="reject">Reject</button>
+                    <button class="btn btn-primary me-md-5 mt-5" type="submit" value="improve"name="improve">Improve</button>
+                
+                    </div>';
+              if(isset($_POST['approve']))
+              {
+                $feedback=$_POST['feedback'];
+                $assessment=$_POST['assessment'];
+              $update = "UPDATE activity SET `status`='1',`feedback`='$feedback',`assessment`='$assessment' WHERE (enrollment='$id' AND title='$title')";$row=mysqli_query($conn,$update);
 if($row){
   echo '<div class="alert alert-success" role="alert">
   Approved!
@@ -84,18 +87,19 @@ else{
   echo 'error';
 }
 }
+else if(isset($_POST['improve']))
+{
+  $feedback= $_POST['feedback'];
+$update = "UPDATE activity SET `improve`='1',`feedback`='IMPROVE $feedback' WHERE (enrollment='$id' AND title='$title')";
+$row=mysqli_query($conn,$update);
+if($row){
+  echo '<div class="alert alert-success" role="alert">
+  Approved!
+</div>';
+  header("location: faculty_requests.php");
+}}
       }?>
-    <!-- <h5 class="card-title"> </h5>
-    <h6 class="card-subtitle mb-2 text-body-secondary">Title/Name</h6>
-    <p class="card-text">DESCRIBTION: Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <a href="#" class="card-link">Project Link</a>
-    <a href="#" class="card-link">Another link</a>
-  </div>
-  <img src="" class="card-img-bottom" alt="FILE ">
-</div>
-  <div class="d-grid gap-2 d-md-block m-3">
-  <button class="btn btn-success me-md-5" type="submit" value="approve"name="approve">Approve</button>
-  <button class="btn btn-danger" type="button" value="reject" name="reject">Reject</button> -->
+
 </div></form>
 
 <?php
