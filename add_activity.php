@@ -50,8 +50,6 @@ session_start();;?>
 <div class="col-md">
     <div class="form-floating m-5">
       <select class="form-select" id="floatingSelectGrid" name="faculty">
-        
-      <option value=""></option>
       <?php 
       
       $que="SELECT * from `faculty`";
